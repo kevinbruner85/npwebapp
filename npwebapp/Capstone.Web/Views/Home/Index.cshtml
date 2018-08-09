@@ -1,0 +1,26 @@
+﻿@using Capstone.Web.Models
+@model List<Park>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="main-content">
+    <div class="container1">
+        <div style="text-align: left">
+
+            @foreach (var item in Model)
+            {
+                <div class="home-div bgc border">
+                    <a href="~/Home/Weather?ParkCode=@(item.ParkCode)"><img class="img-home rounded" style="float: left" id="detailImg" src="~/Content/img/parks/@(item.ParkCode).jpg" style="width:500px;height:auto;" /></a>
+
+                    <div><h2>@item.ParkName</h2></div>
+                    <div class="desc-div">@item.ParkDescription.</div>
+                   
+                    <br />
+                    <div><h4>@item.State</h4></div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

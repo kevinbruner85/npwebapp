@@ -1,0 +1,168 @@
+﻿@using Capstone.Web.Models
+@model DetailView
+@{
+    string sessionValue = Session["Scale"] as string;
+    bool isChecked = false;
+    var convert = Model.ConvertedTemps();
+    DateTime dateAndTime = DateTime.Today;
+    var date = dateAndTime.DayOfWeek.ToString();
+    string forecast = "";
+    int milesOfTrail = (int)Model.park.MilesOfTrail;
+    string button = "";
+}
+<div class="container-fluid bgc">
+    <br />
+    <div class="jumbotron jumbotron-fluid bgc2 border rounded">
+        <h1 class="display-5" align="center">@Model.park.ParkName </h1>
+        <br />
+        <h3 class="display-6">@Model.park.InspirationalQuote</h3>
+        <blockquote>
+            <p class="lead">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- <i>@Model.park.QuoteSource</i></p>
+        </blockquote>
+    </div>
+    
+    <div class="flex-container">
+        <img src="~/Content/img/parks/@(Model.park.ParkCode).jpg" class="rounded float-left rounded-right border border-success" @*class="detail-img"*@ />
+
+
+        <ul class="bgc" style="list-style-type:none">
+         
+            &nbsp;
+            <li><strong>State:</strong> @Model.park.State</li>
+            <li><strong>Acres:</strong> @Model.park.Acreage.ToString("N0")</li>
+            <li><strong>Elevation:</strong> @Model.park.ElevationInFeet ft.</li>
+            <li><strong>Miles of Trails:</strong> @milesOfTrail mi</li>
+            <li><strong>Number of Campsites: </strong> @Model.park.NumberOfCampSites</li>
+            <li><strong>Climate:</strong> @Model.park.Climate</li>
+            <li><strong>Year Founded: </strong> @Model.park.YearFounded</li>
+            <li><strong>Annual Visitors:</strong> @Model.park.AnnualVisitorCount.ToString("N0")</li>
+            <li><strong>Entry Fee:</strong> @Model.park.EntryFee.ToString("c")</li>
+            <li><strong>Number of Animal Species:</strong> @Model.park.NumberOfAnimalSpecies</li>
+            <li><strong>Park Description:</strong> @Model.park.ParkDescription.</li>
+        </ul>
+
+    </div>
+    <br />
+    <div class="container-fluid">
+        @{ 
+            if(sessionValue == "false" || sessionValue == null)
+            {
+                button = "Fahrenheit";
+            }
+            else if(sessionValue == "true")
+            {
+                button = "Celsius";
+            }
+        }
+        @using (Html.BeginForm("Weather", "Home"))
+        {
+        <div>
+
+            @Html.CheckBox("Scale", isChecked)
+            <input type="hidden" id="parkCode" name="parkCode" value="@Model.park.ParkCode">
+            <button class="btn bgc2">@button</button>
+            <b>&nbsp;Click button with checked box for Celsius view. Click with unchecked box to return to Fahrenheit view. </b><br />
+            
+        </div>
+            <br />
+        }
+    </div>
+
+
+    <div class="flex-container-weather bgc2">
+
+        @if (sessionValue == "false" || sessionValue == null)
+        {
+            foreach (var item in Model.weather)
+            {
+        <div>
+            <img src="~/Content/img/weather/@(item.Forecast).png" class="weather-pic border bgc rounded" alt="@item.Forecast" />
+            @if (item.FiveDayForecastValue == 1)
+            {
+                <p class="border bgc rounded"><b>&nbsp;&nbsp;@date</b></p>
+            }
+            @if (item.FiveDayForecastValue == 2)
+            {
+                date = DateTime.Now.AddDays(1).DayOfWeek.ToString();
+                <p class="border bgc rounded"><b>&nbsp;&nbsp;@date</b></p>
+            }
+            @if (item.FiveDayForecastValue == 3)
+            {
+                date = DateTime.Now.AddDays(2).DayOfWeek.ToString();
+                <p class="border bgc rounded"><b>&nbsp;&nbsp;@date</b></p>
+            }
+            @if (item.FiveDayForecastValue == 4)
+            {
+                date = DateTime.Now.AddDays(3).DayOfWeek.ToString();
+                <p class="border bgc rounded"><b>&nbsp;&nbsp;@date</b></p>
+            }
+            @if (item.FiveDayForecastValue == 5)
+            {
+                date = DateTime.Now.AddDays(4).DayOfWeek.ToString();
+                <p class="border bgc rounded"><b>&nbsp;&nbsp;@date</b></p>
+            }
+
+            <p class="border bgc rounded"><b>&nbsp;&nbsp;Low of @item.LowTemp °F</b></p>
+            <p class="border bgc rounded"><b>&nbsp;&nbsp;High of @item.HighTemp °F</b></p>
+
+            @if (item.FiveDayForecastValue == 1)
+            {
+                string temp = item.GetTemperatureMessage();
+                <p class="border bgc rounded"><b>&nbsp;&nbsp;@item.GetForecastMessage()</b></p>
+                if (temp.Length > 10)
+                {
+                    <p class="border bgc rounded"><b>&nbsp;&nbsp;@item.GetTemperatureMessage()</b></p>
+                }
+            }
+        </div>
+            }
+        }
+        @if (sessionValue == "true")
+        {
+            foreach (var item in convert)
+            {
+        <div>
+            <img src="~/Content/img/weather/@(item.Forecast).png" class="weather-pic border bgc rounded" alt="@item.Forecast" />
+            @if (item.FiveDayForecastValue == 1)
+            {
+                <p class="border bgc rounded"><b>&nbsp;&nbsp;@date</b></p>
+            }
+            @if (item.FiveDayForecastValue == 2)
+            {
+                date = DateTime.Now.AddDays(1).DayOfWeek.ToString();
+                <p class="border bgc rounded"><b>&nbsp;&nbsp;@date</b></p>
+            }
+            @if (item.FiveDayForecastValue == 3)
+            {
+                date = DateTime.Now.AddDays(2).DayOfWeek.ToString();
+                <p class="border bgc rounded"><b>&nbsp;&nbsp;@date</b></p>
+            }
+            @if (item.FiveDayForecastValue == 4)
+            {
+                date = DateTime.Now.AddDays(3).DayOfWeek.ToString();
+                <p class="border bgc rounded"><b>&nbsp;&nbsp;@date</b></p>
+            }
+            @if (item.FiveDayForecastValue == 5)
+            {
+                date = DateTime.Now.AddDays(4).DayOfWeek.ToString();
+                <p class="border bgc rounded"><b>&nbsp;&nbsp;@date</b></p>
+            }
+
+            <p class="border bgc rounded"><b>&nbsp;&nbsp;Low of @item.LowTemp °C</b></p>
+            <p class="border bgc rounded"><b>&nbsp;&nbsp;High of @item.HighTemp °C</b></p>
+            @if (item.FiveDayForecastValue == 1)
+            {
+                <p class="border bgc rounded"><b>&nbsp;&nbsp;@item.GetForecastMessage()</b></p>
+                string temp = item.GetTemperatureMessageC();
+                if (temp.Length > 10)
+                {
+                    <p class="border bgc rounded"><b>&nbsp;&nbsp;@item.GetTemperatureMessageC()</b></p>
+                }
+
+            }
+        </div>
+
+            }
+        }
+    </div>
+</div>

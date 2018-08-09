@@ -1,0 +1,150 @@
+﻿.container {
+    background-color: white;
+    border-radius: 10px;
+    margin: auto;
+    width: 90%;
+    height: 600px;
+    display: flex;
+    flex-direction: row;
+    padding: 30px;
+}
+
+.weight-form {
+    margin-top: 50px;
+    margin-left: 50px;
+}
+
+.weight-output-img {
+    width: 200px;
+    height: 200px;
+}
+
+.home-div {
+    display: inline-block;
+    text-align: left;
+    float: left;
+    vertical-align: top;
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.weight-form {
+    margin-top: 50px;
+    margin-left: 50px;
+}
+
+.img-home {
+    padding-right: 20px;
+    border: 5px;
+}
+
+.layout-div {
+    background-color: forestgreen;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    padding: 10px;
+}
+
+.nav-link {
+    color: white;
+}
+
+div.layout-div > a {
+    color: white;
+}
+
+.survey-form {
+    display: block;
+}
+
+.p-survey {
+    display: block;
+}
+
+.damn-div {
+    display: block;
+}
+
+.detail-img {
+    width: 90%;
+    height: auto;
+    margin-top: 10px;
+    padding: 20px;
+    border: 5px;
+    align-content:center;
+}
+
+.container-fluid {
+}
+
+.flex-container {
+    display: flex;
+    flex-wrap: nowrap;
+    /*background-color: DodgerBlue;*/
+}
+
+.flex-container > div {
+    background-color: #f1f1f1;
+    width: 100%;
+    margin: 5px;
+    text-align: center;
+}
+
+.weather-pic {
+    width: 50%;
+    /*margin: auto;*/ 
+}
+
+.favorites-display {
+    display: inline;
+    max-height:350px;
+
+}
+
+.flex-container-fav {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.flex-container-fav > div {
+    /*background-color: #f1f1f1;*/
+    width: 100%;
+    padding: 0px;
+    margin: 5px;
+    text-align: left;
+}
+
+.flex-container-weather {
+    display: flex;
+    flex-wrap: nowrap;
+    /*background-color: gainsboro;*/
+}
+
+.flex-container-weather > div {
+    /*background-color: #f1f1f1;*/
+    width: 100%;
+    padding: 5px;
+    margin: 5px;
+    text-align: left;
+}
+
+.flex-container-weather > div:first-child {
+    width: 175%;
+}
+.bgc {
+    background-color: #e9ecef;
+    
+}
+.bgc2 {
+    background-color: #C0C0C0;
+}
+.aligner{
+    text-align: left;
+}
+@font-face{
+    font-family: myFirstFont;
+    src: url(sansation_light.woff);
+}
+.fonter{
+    font-family: myFirstFont;
+}

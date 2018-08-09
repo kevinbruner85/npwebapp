@@ -1,0 +1,29 @@
+﻿@using Capstone.Web.Models
+@model List<Favorites>
+
+
+<section class="bgc">
+    <div class="container-fluid" align="center">
+        <h1 class="align-center fonter">Here are the results of our Survey!</h1>
+    </div>
+
+    @foreach (var item in Model)
+    {
+        int descriptorCheck = item.ParkDescription.Length - 1;
+        if(item.ParkDescription[descriptorCheck] != '.' && item.ParkDescription[descriptorCheck - 1] != '.' && item.ParkDescription[descriptorCheck - 2] != '.')
+        {
+            item.ParkDescription += ".";
+        }
+        <div class="flex-container-fav aligner">
+
+            <div class="text-center bgc2 border rounded border-success">
+                <img src="~/Content/img/parks/@(item.ParkCode.ToLower()).jpg" class="favorites-display float-left" />
+
+                <h3>@item.ParkName</h3>
+                <p class="fonter"><b>Survey Count:</b> @item.ParkCount</p>
+                <p class="fonter"><font size="5">@item.ParkDescription</font></p>
+
+            </div>
+        </div>
+    }
+</section>
